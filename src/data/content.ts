@@ -5,24 +5,25 @@ export type Link = { label: string; href: string | null };
 export const profile = {
   name: "Yazan Al-Sedih",
   tagline:
-    "AI & ML engineer building intelligent systems with patience and precision.",
+    "AI/ML & full-stack engineer building intelligent systems with patience and precision.",
   intro:
-    "I build LLM agents, RAG pipelines and monitored ML models — and the secure backends that put them into production. Backend engineer on the Tasheh app, first place at the Pink AI Hackathon 2026.",
+    "I build LLM agents, RAG pipelines and monitored ML models — and the full-stack products that put them into production. Backend engineer on the Tasheh app, first place at the Pink AI Hackathon 2026.",
   meta: "Ramallah, Palestine · Open to remote & on-site · Arabic (native) · English (professional)",
   email: "yazansedih@gmail.com",
-  cvUrl: null as string | null, // e.g. "/yazan-al-sedih-cv.pdf" once added to /public
-  photo: null as string | null, // e.g. "/photo.jpg" once added to /public
+  cvUrl: "/YazanAlSedih_CV.pdf" as string | null,
+  photo: "/profile-2026-1.jpeg" as string | null,
   socials: [
-    { label: "LinkedIn", href: null },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/yazansedih/" },
     { label: "GitHub", href: "https://github.com/yazansedih" },
-    { label: "LeetCode", href: null },
+    { label: "LeetCode", href: "https://leetcode.com/u/yazansedih/" },
+    { label: "DataCamp", href: "https://www.datacamp.com/portfolio/yazansedih" },
   ] satisfies Link[],
 };
 
 export const focusAreas = [
-  { index: "01 · AI / ML", title: "LLM agents, RAG and model training", tone: "accent" },
+  { index: "01 · AI / ML", title: "LLM agents, RAG, data processing and model training", tone: "accent" },
   { index: "02 · Backend", title: "Secure APIs, auth and databases", tone: "olive" },
-  { index: "03 · Full stack", title: "Next.js and React products, end to end", tone: "ink" },
+  { index: "03 · Full stack", title: "Next.js and React, end to end", tone: "ink" },
 ] as const;
 
 export const featured = {
@@ -31,14 +32,15 @@ export const featured = {
   summary:
     "A multi-agent assistant built with FastAPI and LangGraph that routes work between research, email and calendar agents — with a human approval gate before any irreversible Gmail or Calendar action.",
   highlights: [
-    "RAG pipeline on Qdrant + FastEmbed with heading-aware chunking and OCR fallback",
-    "Async ingestion through a Redis worker queue",
-    "OAuth 2.0 with encrypted tokens; OpenTelemetry, Prometheus and Sentry monitoring",
+    "RAG pipeline on Qdrant + FastEmbed with heading-aware chunking, OCR fallback and source/page citations",
+    "Regex-first supervisor routing with LLM fallback; async ingestion through a Redis worker queue",
+    "OAuth 2.0 with PKCE, AES-256-GCM token encryption and refresh-token rotation",
+    "Live SSE streaming backed by 282 automated tests; OpenTelemetry, Prometheus and Sentry monitoring",
   ],
   stack: "FastAPI · LangGraph · Next.js · TypeScript · Qdrant · Docker",
-  image: null as string | null,
+  image: "/aurynix-nexus.png" as string | null,
   links: [
-    { label: "Live demo →", href: null },
+    { label: "Live demo →", href: "https://aurynix-nexus-web.vercel.app/" },
     { label: "Read case study →", href: null },
   ] satisfies Link[],
 };
@@ -51,6 +53,7 @@ export type Project = {
   metrics?: { value: string; label: string }[];
   stack: string;
   links: Link[];
+  hidden?: boolean; // keeps the card's copy without showing it
 };
 
 export const projects: Project[] = [
@@ -77,17 +80,47 @@ export const projects: Project[] = [
     ],
     stack: "Node.js · Express · TypeScript · PostgreSQL · Prisma",
     links: [
-      { label: "App Store →", href: null },
-      { label: "Google Play →", href: null },
+      { label: "App Store →", href: "https://apps.apple.com/il/app/tasheh-%D8%B7%D8%B4%D8%A9/id6771122490" },
+      { label: "Google Play →", href: "https://play.google.com/store/apps/details?id=com.tasheh.mobile" },
     ],
   },
   {
     eyebrow: "Competition · DataCamp × Gaza Sky Geeks",
     title: "Pink AI Hackathon — 1st Place",
     summary:
-      "Won first place in a breast cancer ML challenge by focusing on what makes medical models trustworthy: leak-free modeling and careful threshold tuning.",
+      "Team Rooters won a three-hour breast cancer data science challenge in DataCamp's Pink October program — framing the model as a tool that supports doctors, not one that replaces them.",
+    highlights: [
+      "Repaired hidden errors in a messy, hand-typed dataset instead of deleting data",
+      "Removed a leaking feature and chose a decision threshold we could defend",
+    ],
     stack: "Python · Pandas · Scikit-learn · DataLab",
-    links: [{ label: "View certificate →", href: null }],
+    links: [{ label: "View certificate →", href: "https://drive.google.com/file/d/1LbhsYGHiVWxsJNQ0aLja1aQFYRCoUc1p/view?usp=sharing" }],
+  },
+  {
+    eyebrow: "Team project · Arabic NLP · 2025",
+    title: "Shu'ur — Arabic Sentiment Analysis",
+    summary:
+      "Analyzes, classifies and visualizes Arabic customer support conversations — including dialects — so teams can spot dissatisfaction early and improve service quality.",
+    highlights: [
+      "Positive, neutral and negative sentiment with automatic tagging of unhappy messages",
+      "Real-time trend dashboards; evaluated with accuracy, precision, recall, F1, MAE and RMSE",
+    ],
+    stack: "Arabic NLP · OpenRouter LLM APIs · Real-time chat",
+    links: [],
+    hidden: true,
+  },
+  {
+    eyebrow: "Team project · Forecasting + RAG · 2025",
+    title: "Sumod — Renewable Energy Tracker",
+    summary:
+      "Visualizes renewable energy consumption and forecasts future usage from historical climate and energy data, with a RAG chatbot that answers questions about the trends.",
+    highlights: [
+      "LSTM forecasting model in TensorFlow; RAG chatbot on Ollama",
+      "Geospatial consumption maps with Plotly and Mapbox; JWT-secured ASP.NET Core API",
+    ],
+    stack: "TensorFlow · Streamlit · Ollama · ASP.NET Core · SQL Server",
+    links: [],
+    hidden: true,
   },
 ];
 
@@ -124,9 +157,17 @@ export const skills = [
   { group: "DevOps & Quality", items: "Docker, GitHub Actions, OpenTelemetry, Prometheus, Sentry, Jest, Supertest, Swagger/OpenAPI" },
 ];
 
+export const recommendation = {
+  quote:
+    "Yazan consistently demonstrated strong technical growth, curiosity, and the ability to quickly apply advanced AI tools in real-world tasks. His discipline and eagerness to learn stood out throughout the program.",
+  name: "Abd Saya'rah",
+  role: "Instructor, “Using AI as a Personal Assistant” bootcamp · Gaza Sky Geeks",
+  href: "https://www.linkedin.com/in/yazansedih/details/recommendations/" as string | null,
+};
+
 export const education = [
   { period: "2020 — 2025", title: "B.E. Computer Engineering", place: "An-Najah National University, Nablus" },
+  { period: "Sep — Dec 2025", title: "Deep Dive LLM Bootcamp", place: "zakey.tech" },
   { period: "Oct 2026", title: "1st Place, Pink AI Hackathon", place: "DataCamp × Gaza Sky Geeks" },
   { period: "2025 — Present", title: "Data Science & AI Scholarship", place: "DataCamp × Gaza Sky Geeks" },
-  { period: "Sep — Dec 2025", title: "Deep Dive LLM Bootcamp", place: "zakey.tech" },
 ];

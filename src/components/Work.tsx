@@ -32,7 +32,7 @@ export function Work() {
         </article>
 
         <div className="project-grid">
-          {projects.map((p) => (
+          {projects.filter((p) => !p.hidden).map((p) => (
             <article key={p.title} className="project-card">
               <p className="card-eyebrow">{p.eyebrow}</p>
               <h3>{p.title}</h3>

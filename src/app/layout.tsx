@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
+import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,14 +17,17 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Yazan Al-Sedih — AI & ML Engineer",
+  title: "Yazan Al-Sedih — AI/ML & Full-Stack Engineer",
   description:
-    "Portfolio of Yazan Al-Sedih: LLM agents, RAG pipelines, monitored ML models and the secure backends behind them.",
+    "Portfolio of Yazan Al-Sedih: LLM agents, RAG pipelines, monitored ML models and the full-stack products behind them.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${newsreader.variable}`}>
+    <html lang="en" className={`${inter.variable} ${newsreader.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>{children}</body>
     </html>
   );
