@@ -11,10 +11,35 @@
   --sand: #ede2cf;
   --line: #e3d8c6;
   --line-strong: #dccfb8;
+  --fill: #8b1c2c;
+  --fill-hover: #5e1019;
+  --fill-deep: #5e1019;
   --on-accent: #fff7ee;
   --on-accent-muted: #f3d9c9;
   --serif: var(--font-serif), Georgia, serif;
   --sans: var(--font-sans), system-ui, sans-serif;
+  --shadow: rgba(42, 33, 28, 0.08);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --accent: #ee8f99;
+  --accent-dark: #f7b8be;
+  --olive: #a3c18a;
+  --ink: #f2e8da;
+  --ink-2: #ddd0bf;
+  --muted: #c4b6a6;
+  --subtle: #a99a8a;
+  --ground: #17120f;
+  --paper: #201915;
+  --sand: #2b231e;
+  --line: #3a2f28;
+  --line-strong: #4b3e35;
+  --fill: #8b1c2c;
+  --fill-hover: #a42536;
+  --fill-deep: #5e1019;
+  --shadow: rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
 }
 
 *,
@@ -99,7 +124,7 @@ a:focus-visible {
 /* Checkered tatreez-style strip */
 .strip {
   height: 14px;
-  background: repeating-conic-gradient(var(--accent) 0 25%, transparent 0 50%) 0 0 / 14px 14px;
+  background: repeating-conic-gradient(var(--fill) 0 25%, transparent 0 50%) 0 0 / 14px 14px;
 }
 
 /* Header */
@@ -140,6 +165,40 @@ a:focus-visible {
   font-weight: 500;
 }
 
+/* Theme toggle: the icon shown is picked by the active theme */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.theme-toggle .icon-sun,
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -156,12 +215,12 @@ a:focus-visible {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--fill);
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: var(--accent-dark);
+  background: var(--fill-hover);
   color: #fff;
 }
 
@@ -178,12 +237,12 @@ a:focus-visible {
 .btn-light {
   min-height: 52px;
   background: var(--on-accent);
-  color: var(--accent-dark);
+  color: var(--fill-deep);
   font-weight: 600;
 }
 
 .btn-light:hover {
-  color: var(--accent-dark);
+  color: var(--fill-deep);
   background: #fff;
 }
 
@@ -269,30 +328,8 @@ a:focus-visible {
 
 .photo-frame img {
   object-fit: cover;
+  object-position: center 12%;
   border-radius: 10px;
-}
-
-.award-badge {
-  position: absolute;
-  left: -20px;
-  bottom: 28px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 12px 16px;
-  box-shadow: 0 8px 24px rgba(42, 33, 28, 0.08);
-}
-
-.award-kicker {
-  font-size: 12px;
-  color: var(--olive);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
-.award-title {
-  font-size: 14px;
-  font-weight: 500;
 }
 
 /* Focus areas */
@@ -580,9 +617,48 @@ a:focus-visible {
   color: var(--muted);
 }
 
+.recommendation {
+  margin: 0;
+  padding: 8px 0 8px 28px;
+  border-left: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 820px;
+}
+
+.recommendation blockquote {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.recommendation figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  font-size: 14px;
+}
+
+.recommendation-name {
+  font-weight: 600;
+}
+
+.recommendation-role {
+  color: var(--muted);
+}
+
+.recommendation a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
 /* Contact */
 .contact {
-  background: var(--accent);
+  background: var(--fill);
   color: var(--on-accent);
 }
 
@@ -644,10 +720,7 @@ a:focus-visible {
 .site-footer {
   padding-top: 28px;
   padding-bottom: 28px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: space-between;
+  text-align: center;
   font-size: 14px;
   color: var(--subtle);
 }
@@ -675,7 +748,233 @@ a:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  .award-badge {
-    left: 12px;
+  /* Toggle moves up beside the name so the links fit on one row */
+  .site-header {
+    position: relative;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .site-nav .theme-toggle {
+    position: absolute;
+    top: 17px;
+    right: 16px;
+  }
+
+  .site-nav a.btn-outline-accent {
+    position: absolute;
+    top: 17px;
+    right: 68px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 14px;
+  }
+
+  .cv-label-long {
+    display: none;
+  }
+}
+
+/* Pipeline rail: a line down the left margin with one node per section */
+.page {
+  position: relative;
+}
+
+.pipeline {
+  --rail-x: max(14px, calc(50% - 616px));
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--rail-x);
+  width: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.pipeline.is-ready {
+  opacity: 1;
+}
+
+.pipeline-track,
+.pipeline-fill {
+  position: absolute;
+  left: -1px;
+  width: 2px;
+}
+
+.pipeline-track {
+  background: repeating-linear-gradient(to bottom, var(--line-strong) 0 6px, transparent 6px 12px);
+}
+
+.pipeline-fill {
+  height: 0;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* A data packet flowing down the part of the pipeline that has run */
+.pipeline-packet {
+  position: absolute;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+  animation: pipeline-flow 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes pipeline-flow {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 8px);
+    opacity: 0;
+  }
+}
+
+.pipeline-node {
+  position: absolute;
+  left: -12px;
+  width: 24px;
+  height: 44px;
+  margin-top: -22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.pipeline-node:hover {
+  text-decoration: none;
+}
+
+.pipeline-dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--line-strong);
+  background: var(--ground);
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pipeline-node:hover .pipeline-dot {
+  transform: scale(1.2);
+  border-color: var(--accent);
+}
+
+.pipeline-node.is-active .pipeline-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+/* One soft pulse when a stage runs */
+.pipeline-node.is-active .pipeline-dot::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: pipeline-pulse 0.9s ease-out 1 forwards;
+}
+
+@keyframes pipeline-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Deploy sits on the red contact band */
+.pipeline-node.is-deploy .pipeline-dot {
+  border-color: var(--on-accent-muted);
+  background: var(--fill);
+}
+
+.pipeline-node.is-deploy.is-active .pipeline-dot,
+.pipeline-node.is-deploy.is-active .pipeline-dot::after {
+  border-color: var(--on-accent);
+  background: var(--on-accent);
+}
+
+.pipeline-node.is-deploy.is-active .pipeline-dot::after {
+  background: transparent;
+}
+
+.pipeline-label {
+  position: absolute;
+  right: 22px;
+  white-space: nowrap;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--subtle);
+  transition: color 0.3s ease;
+}
+
+.pipeline-node.is-active .pipeline-label {
+  color: var(--accent);
+}
+
+.pipeline-node.is-deploy .pipeline-label {
+  color: var(--on-accent-muted);
+}
+
+.pipeline-node.is-deploy.is-active .pipeline-label {
+  color: var(--on-accent);
+}
+
+@media (max-width: 1439px) {
+  .pipeline-label {
+    display: none;
+  }
+}
+
+/* Phones: just a thin progress line at the edge */
+@media (max-width: 600px) {
+  .pipeline {
+    left: 5px;
+  }
+
+  .pipeline-node,
+  .pipeline-packet {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-packet {
+    display: none;
+  }
+
+  .pipeline-node.is-active .pipeline-dot::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .pipeline,
+  .pipeline-dot,
+  .pipeline-label {
+    transition: none;
   }
 }

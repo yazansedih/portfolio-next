@@ -22,10 +22,6 @@ export function Hero() {
           ) : (
             <span>[Your professional photo]</span>
           )}
-          <div className="award-badge">
-            <p className="award-kicker">1ST PLACE</p>
-            <p className="award-title">Pink AI Hackathon 2026</p>
-          </div>
         </div>
       </div>
     </section>
