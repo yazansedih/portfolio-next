@@ -4,8 +4,7 @@ export function Footer() {
   return (
     <>
       <footer className="container site-footer">
-        <span>© 2026 {profile.name}</span>
-        <span>Designed and built in Palestine</span>
+        <span>© 2026 {profile.name} | Palestine - West Bank</span>
       </footer>
       <div className="strip" aria-hidden="true" />
     </>

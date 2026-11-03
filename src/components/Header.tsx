@@ -1,9 +1,11 @@
 import { profile } from "@/data/content";
+import { ThemeToggle } from "./ThemeToggle";
 
 const nav = [
   { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
+  { href: "#education", label: "Education" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -21,9 +23,10 @@ export function Header() {
         ))}
         {profile.cvUrl && (
           <a href={profile.cvUrl} className="btn-outline-accent" download>
-            Download CV
+            <span className="cv-label-long">Download </span>CV
           </a>
         )}
+        <ThemeToggle />
       </nav>
     </header>
   );
