@@ -407,7 +407,7 @@ a:focus-visible {
   position: relative;
   flex: 1 1 420px;
   min-width: 0;
-  height: 320px;
+  aspect-ratio: 1891 / 938;
   background: var(--sand);
   border: 1px solid var(--line-strong);
   border-radius: 8px;
@@ -420,7 +420,7 @@ a:focus-visible {
 }
 
 .featured-media img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .featured-body {
@@ -738,10 +738,6 @@ a:focus-visible {
 
   .featured {
     padding: 20px;
-  }
-
-  .featured-media {
-    height: 220px;
   }
 
   .project-grid {
