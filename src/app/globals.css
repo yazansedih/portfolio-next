@@ -407,7 +407,7 @@ a:focus-visible {
   position: relative;
   flex: 1 1 420px;
   min-width: 0;
-  aspect-ratio: 1891 / 938;
+  aspect-ratio: 16 / 9; /* fallback; Work.tsx sets the real image ratio */
   background: var(--sand);
   border: 1px solid var(--line-strong);
   border-radius: 8px;
