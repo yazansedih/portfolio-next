@@ -17,4 +17,4 @@ All copy, links and project data live in `src/data/content.ts`. Links set to `nu
 
 - Photo: add an image to `public/` and set `profile.photo` (e.g. `"/photo.jpg"`).
 - CV: add the PDF to `public/` and set `profile.cvUrl`.
-- Nexus screenshot: set `featured.image`.
+- Featured project: set `featuredProjectId` to a project's `id`. Each project can carry an `image` (`src`, `width`, `height`) shown when it is featured.
