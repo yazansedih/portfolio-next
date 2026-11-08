@@ -26,50 +26,61 @@ export const focusAreas = [
   { index: "03 · Full stack", title: "Next.js and React, end to end", tone: "ink" },
 ] as const;
 
-export const featured = {
-  eyebrow: "Aurynix · Featured · 2026",
-  title: "Aurynix Nexus — AI Business Assistant",
-  summary:
-    "A multi-agent assistant built with FastAPI and LangGraph that routes work between research, email and calendar agents — with a human approval gate before any irreversible Gmail or Calendar action.",
-  highlights: [
-    "RAG pipeline on Qdrant + FastEmbed with heading-aware chunking, OCR fallback and source/page citations",
-    "Regex-first supervisor routing with LLM fallback; async ingestion through a Redis worker queue",
-    "OAuth 2.0 with PKCE, AES-256-GCM token encryption and refresh-token rotation",
-    "Live SSE streaming backed by 282 automated tests; OpenTelemetry, Prometheus and Sentry monitoring",
-  ],
-  stack: "FastAPI · LangGraph · Next.js · TypeScript · Qdrant · Docker",
-  image: "/aurynix-nexus.png" as string | null,
-  links: [
-    { label: "Live demo →", href: "https://aurynix-nexus-web.vercel.app/" },
-    { label: "Read case study →", href: null },
-  ] satisfies Link[],
-};
-
 export type Project = {
+  id: string;
   eyebrow: string;
   title: string;
   summary: string;
   highlights?: string[];
   metrics?: { value: string; label: string }[];
   stack: string;
+  // Screenshot shown when this project is featured; width/height keep it uncropped.
+  image?: { src: string; width: number; height: number };
   links: Link[];
   hidden?: boolean; // keeps the card's copy without showing it
 };
 
+// Which project gets the large card at the top of Selected Work.
+// Set it to any project's `id` (e.g. "nexus"); the rest fill the grid in list order.
+export const featuredProjectId = "apex";
+
 export const projects: Project[] = [
   {
+    id: "apex",
     eyebrow: "Aurynix · ML platform · 2026",
-    title: "Aurynix Apex — ML Scoring & Monitoring",
+    title: "Aurynix Apex — Lead Scoring & Monitoring",
     summary:
-      "A configuration-driven pipeline with leakage auditing and calibrated, explainable scoring models — served via FastAPI with drift monitoring and champion/challenger retraining.",
+      "Ranks new sales leads by their chance of converting, explains each score in plain words, and warns when the model stops being reliable. A leakage audit removed 9 columns that would have inflated results. Retraining swaps in a new model only if it beats the current one on the same held-out leads. Runs live as a FastAPI service with a Streamlit demo.",
     metrics: [
-      { value: "0.787", label: "PR-AUC · X Education" },
-      { value: "0.359", label: "PR-AUC · Bank Marketing" },
+      { value: "43%", label: "of buyers found in the top 20% of leads" },
+      { value: "2.2×", label: "better than random ordering" },
     ],
-    stack: "Python · Scikit-learn · FastAPI · MLflow · GitHub Actions",
-    links: [{ label: "View repository →", href: "https://github.com/Aurynix/aurynix-apex" }],
+    stack: "Python · Scikit-learn · FastAPI · Postgres · Docker · GitHub Actions",
+    image: { src: "/aurynix-apex.png", width: 1821, height: 943 },
+    links: [
+      { label: "Live demo →", href: "https://aurynix-apex-demo.onrender.com/" },
+    ],
   },
   {
+    id: "nexus",
+    eyebrow: "Aurynix · AI assistant · 2026",
+    title: "Aurynix Nexus — AI Business Assistant",
+    summary:
+      "A multi-agent assistant built with FastAPI and LangGraph that routes work between research, email and calendar agents — with a human approval gate before any irreversible Gmail or Calendar action.",
+    highlights: [
+      "RAG pipeline on Qdrant + FastEmbed with heading-aware chunking, OCR fallback and source/page citations",
+      "Regex-first supervisor routing with LLM fallback; async ingestion through a Redis worker queue",
+      "OAuth 2.0 with PKCE, AES-256-GCM token encryption and refresh-token rotation",
+    ],
+    stack: "FastAPI · LangGraph · Next.js · TypeScript · Qdrant · Docker",
+    image: { src: "/aurynix-nexus.png", width: 1891, height: 938 },
+    links: [
+      { label: "Live demo →", href: "https://aurynix-nexus-web.vercel.app/" },
+      { label: "Read case study →", href: null },
+    ],
+  },
+  {
+    id: "tasheh",
     eyebrow: "Client work · Live on iOS & Android",
     title: "Tasheh — Location-Based Discovery",
     summary:
@@ -85,6 +96,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "pink-ai",
     eyebrow: "Competition · DataCamp × Gaza Sky Geeks",
     title: "Pink AI Hackathon — 1st Place",
     summary:
@@ -97,6 +109,7 @@ export const projects: Project[] = [
     links: [{ label: "View certificate →", href: "https://drive.google.com/file/d/1LbhsYGHiVWxsJNQ0aLja1aQFYRCoUc1p/view?usp=sharing" }],
   },
   {
+    id: "shuur",
     eyebrow: "Team project · Arabic NLP · 2025",
     title: "Shu'ur — Arabic Sentiment Analysis",
     summary:
@@ -110,6 +123,7 @@ export const projects: Project[] = [
     hidden: true,
   },
   {
+    id: "sumod",
     eyebrow: "Team project · Forecasting + RAG · 2025",
     title: "Sumod — Renewable Energy Tracker",
     summary:
