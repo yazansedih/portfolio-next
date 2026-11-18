@@ -40,5 +40,5 @@ All copy, links and project data live in `src/data/content.ts`. Links set to `nu
 - **Photo:** add an image to `public/` and set `profile.photo` (e.g. `"/photo.jpg"`).
 - **CV:** replace `public/YazanAlSedih_CV.pdf`, or add a new PDF and set `profile.cvUrl`.
 - **Projects:** each entry in `projects` has an `id`, copy, optional `highlights` or `metrics`, a `stack` line and `links`. Set `hidden: true` to keep a project's copy without showing it.
-- **Featured project:** set `featuredProjectId` to a project's `id` (for example `"apex"` or `"nexus"`). The other visible projects fill the grid in list order.
-- **Screenshots:** add the image to `public/` and set the project's `image` to `{ src, width, height }`. The width and height keep the screenshot uncropped when the project is featured.
+- **Featured project:** set `featuredProjectId` to a project's `id` (for example `"pulse"`, `"apex"` or `"nexus"`). The other visible projects fill the grid in list order.
+- **Screenshots:** add images to `public/` and list them in the project's `images` as `{ src, width, height, alt }`. A featured project shows them stacked; the width and height keep each one uncropped.
