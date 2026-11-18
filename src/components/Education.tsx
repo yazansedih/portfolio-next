@@ -11,6 +11,11 @@ export function Education() {
             <p className="edu-period">{e.period}</p>
             <h3>{e.title}</h3>
             <p className="edu-place">{e.place}</p>
+            {e.href && (
+              <a className="edu-link" href={e.href} target="_blank" rel="noopener noreferrer">
+                {e.linkLabel ?? "View →"}
+              </a>
+            )}
           </div>
         ))}
       </div>

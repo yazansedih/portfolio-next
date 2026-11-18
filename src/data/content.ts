@@ -34,17 +34,39 @@ export type Project = {
   highlights?: string[];
   metrics?: { value: string; label: string }[];
   stack: string;
-  // Screenshot shown when this project is featured; width/height keep it uncropped.
-  image?: { src: string; width: number; height: number };
+  // Screenshots shown (stacked) when this project is featured; width/height keep them uncropped.
+  images?: { src: string; width: number; height: number; alt: string }[];
   links: Link[];
   hidden?: boolean; // keeps the card's copy without showing it
 };
 
 // Which project gets the large card at the top of Selected Work.
-// Set it to any project's `id` (e.g. "nexus"); the rest fill the grid in list order.
-export const featuredProjectId = "apex";
+// Set it to any project's `id` (e.g. "apex"); the rest fill the grid in list order.
+export const featuredProjectId = "pulse";
 
 export const projects: Project[] = [
+  {
+    id: "pulse",
+    eyebrow: "Aurynix · AI lead qualification · 2026",
+    title: "Aurynix Pulse — AI Lead Qualification",
+    summary:
+      "Tells a sales team which leads are ready to buy, and why. Pulse collects leads from a web form, Telegram and CSV into one place, merges duplicates, scores each one from 0 to 100, and alerts the team on Telegram the moment a lead turns hot. Live in production with a one-click demo login.",
+    highlights: [
+      "Score blends fit from my Apex ML model with intent from Gemini, which reads Arabic or English messages for budget, authority, need and timeline — every signal backed by a quote from the lead's own words",
+      "Won/Lost outcomes flow back to Apex against its original prediction, so the model can be measured on real deals without leakage",
+      "Prompt-injection protection, contact details stripped before the LLM, and a keyword fallback when Gemini is down",
+      "Transactional outbox and HMAC-signed n8n webhooks; 600+ API tests and a Playwright browser test on every PR",
+    ],
+    stack: "FastAPI · PostgreSQL · Redis · Gemini · n8n · Next.js · Docker",
+    images: [
+      { src: "/aurynix-pulse-leads.png", width: 1831, height: 943, alt: "Aurynix Pulse lead list ranked by score" },
+      { src: "/aurynix-pulse-lead.png", width: 1818, height: 944, alt: "Aurynix Pulse lead page with quoted BANT signals" },
+    ],
+    links: [
+      { label: "Live demo →", href: "https://aurynix-pulse.duckdns.org/" },
+      { label: "Watch the 2-min video →", href: null },
+    ],
+  },
   {
     id: "apex",
     eyebrow: "Aurynix · ML platform · 2026",
@@ -56,7 +78,7 @@ export const projects: Project[] = [
       { value: "2.2×", label: "better than random ordering" },
     ],
     stack: "Python · Scikit-learn · FastAPI · Postgres · Docker · GitHub Actions",
-    image: { src: "/aurynix-apex.png", width: 1821, height: 943 },
+    images: [{ src: "/aurynix-apex.png", width: 1821, height: 943, alt: "Aurynix Apex lead scoring demo" }],
     links: [
       { label: "Live demo →", href: "https://aurynix-apex-demo.onrender.com/" },
     ],
@@ -73,7 +95,7 @@ export const projects: Project[] = [
       "OAuth 2.0 with PKCE, AES-256-GCM token encryption and refresh-token rotation",
     ],
     stack: "FastAPI · LangGraph · Next.js · TypeScript · Qdrant · Docker",
-    image: { src: "/aurynix-nexus.png", width: 1891, height: 938 },
+    images: [{ src: "/aurynix-nexus.png", width: 1891, height: 938, alt: "Aurynix Nexus dashboard" }],
     links: [
       { label: "Live demo →", href: "https://aurynix-nexus-web.vercel.app/" },
       { label: "Read case study →", href: null },
@@ -107,6 +129,7 @@ export const projects: Project[] = [
     ],
     stack: "Python · Pandas · Scikit-learn · DataLab",
     links: [{ label: "View certificate →", href: "https://drive.google.com/file/d/1LbhsYGHiVWxsJNQ0aLja1aQFYRCoUc1p/view?usp=sharing" }],
+    hidden: true, // shown under Education & Recognition instead
   },
   {
     id: "shuur",
@@ -179,9 +202,17 @@ export const recommendation = {
   href: "https://www.linkedin.com/in/yazansedih/details/recommendations/" as string | null,
 };
 
-export const education = [
+export type EducationItem = { period: string; title: string; place: string; href?: string; linkLabel?: string };
+
+export const education: EducationItem[] = [
   { period: "2020 — 2025", title: "B.E. Computer Engineering", place: "An-Najah National University, Nablus" },
   { period: "Sep — Dec 2025", title: "Deep Dive LLM Bootcamp", place: "zakey.tech" },
-  { period: "Oct 2026", title: "1st Place, Pink AI Hackathon", place: "DataCamp × Gaza Sky Geeks" },
+  {
+    period: "Oct 2026",
+    title: "1st Place, Pink AI Hackathon",
+    place: "DataCamp × Gaza Sky Geeks",
+    href: "https://drive.google.com/file/d/1LbhsYGHiVWxsJNQ0aLja1aQFYRCoUc1p/view?usp=sharing",
+    linkLabel: "View certificate →",
+  },
   { period: "2025 — Present", title: "Data Science & AI Scholarship", place: "DataCamp × Gaza Sky Geeks" },
 ];

@@ -40,14 +40,17 @@ export function Work() {
 
         {featured && (
           <article className="featured">
-            <div
-              className="featured-media"
-              style={featured.image ? { aspectRatio: `${featured.image.width} / ${featured.image.height}` } : undefined}
-            >
-              {featured.image ? (
-                <Image src={featured.image.src} alt={`${featured.title} screenshot`} fill sizes="(max-width: 900px) 100vw, 560px" />
+            <div className="featured-gallery">
+              {featured.images?.length ? (
+                featured.images.map((img) => (
+                  <div key={img.src} className="featured-media" style={{ aspectRatio: `${img.width} / ${img.height}` }}>
+                    <Image src={img.src} alt={img.alt} fill sizes="(max-width: 900px) 100vw, 560px" />
+                  </div>
+                ))
               ) : (
-                <span>[{featured.title} screenshot]</span>
+                <div className="featured-media">
+                  <span>[{featured.title} screenshot]</span>
+                </div>
               )}
             </div>
             <div className="featured-body">

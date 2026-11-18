@@ -403,10 +403,17 @@ a:focus-visible {
   border-radius: 10px;
 }
 
-.featured-media {
-  position: relative;
+.featured-gallery {
   flex: 1 1 420px;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.featured-media {
+  position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9; /* fallback; Work.tsx sets the real image ratio */
   background: var(--sand);
   border: 1px solid var(--line-strong);
@@ -615,6 +622,13 @@ a:focus-visible {
 .edu-place {
   font-size: 14px;
   color: var(--muted);
+}
+
+.edu-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .recommendation {
