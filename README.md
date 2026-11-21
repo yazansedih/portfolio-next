@@ -9,7 +9,7 @@ Live: https://yazansedih.duckdns.org/
 - Single page with sections for focus areas, selected work, experience, skills, education and contact
 - Featured project card with a screenshot, picked by one setting in the content file
 - Light and dark mode that follows the system setting, with a toggle that remembers the choice
-- Downloadable CV and a generated link-preview image for LinkedIn, WhatsApp and Slack
+- Optional downloadable CV and a generated link-preview image for LinkedIn, WhatsApp and Slack
 - All copy kept in one data file, so updating the site rarely means touching components
 
 ## Develop
@@ -30,7 +30,7 @@ src/
   components/     one component per page section (Hero, Work, Experience, ...)
   data/content.ts all copy, links and project data
   lib/theme.ts    light/dark theme handling
-public/           photo, CV and project screenshots
+public/           photo, project screenshots and (optionally) the CV
 ```
 
 ## Editing content
@@ -38,7 +38,7 @@ public/           photo, CV and project screenshots
 All copy, links and project data live in `src/data/content.ts`. Links set to `null` are hidden until you fill them in.
 
 - **Photo:** add an image to `public/` and set `profile.photo` (e.g. `"/photo.jpg"`).
-- **CV:** replace `public/YazanAlSedih_CV.pdf`, or add a new PDF and set `profile.cvUrl`.
+- **CV:** add the PDF to `public/` and set `profile.cvUrl` (e.g. `"/YazanAlSedih_CV.pdf"`). With `null`, the Download CV links are hidden. Leave personal details such as your phone number out of the PDF, since it is public.
 - **Projects:** each entry in `projects` has an `id`, copy, optional `highlights` or `metrics`, a `stack` line and `links`. Set `hidden: true` to keep a project's copy without showing it.
 - **Featured project:** set `featuredProjectId` to a project's `id` (for example `"pulse"`, `"apex"` or `"nexus"`). The other visible projects fill the grid in list order.
 - **Screenshots:** add images to `public/` and list them in the project's `images` as `{ src, width, height, alt }`. A featured project shows them stacked; the width and height keep each one uncropped.

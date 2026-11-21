@@ -10,7 +10,7 @@ export const profile = {
     "I build LLM agents, RAG pipelines and monitored ML models — and the full-stack products that put them into production. Backend engineer on the Tasheh app, first place at the Pink AI Hackathon 2026.",
   meta: "Ramallah, Palestine · Open to remote & on-site · Arabic (native) · English (professional)",
   email: "yazansedih@gmail.com",
-  cvUrl: "/YazanAlSedih_CV.pdf" as string | null,
+  cvUrl: null as string | null, // CV hidden for now; add a PDF without the phone number to public/ and set its path here
   photo: "/profile-2026-1.jpeg" as string | null,
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/yazansedih/" },
